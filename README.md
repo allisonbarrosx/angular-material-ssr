@@ -1,3 +1,9 @@
+# Idea
+
+Fazer uma main page com cards listando os tipos de pokemon e quando clica no card abre outra página com uma lista, usando a MatDataGrid, com todos os pokemons, suas fotos e pa
+
+No sidebar uma lista de links com os mesmos tipos, mas texto apenas
+
 # AngularMaterial
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.

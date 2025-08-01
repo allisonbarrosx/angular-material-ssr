@@ -8,6 +8,15 @@
       [fixedInViewport]="isMobile()"
     >
       <mat-list>
+        @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
+        <mat-list-item>
+          <span matListItemTitle class="text-capitalize"
+            >{{ pokemonType.name }}</span
+          >
+        </mat-list-item>
+        }
+      </mat-list>
+      <!-- <mat-list>
         <mat-list-item>
           <span matListItemTitle>Pepper</span>
           <span matListItemLine>Produced by a plant</span>
@@ -20,7 +29,7 @@
           <span matListItemTitle>Paprika</span>
           <span matListItemLine>Produced by dried and ground red peppers</span>
         </mat-list-item>
-      </mat-list>
+      </mat-list> -->
     </mat-sidenav>
 
     <mat-sidenav-content>

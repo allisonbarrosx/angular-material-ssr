@@ -1,6 +1,17 @@
-<mat-card class="example-card" appearance="outlined">
+<div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-start flex-wrap gap-3">
+    @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-content class="text-capitalize">
+        {{ pokemonType.name }}
+      </mat-card-content>
+    </mat-card>
+    }
+  </div>
+</div>
+<!-- <mat-card class="example-card" appearance="outlined">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar class="example-header-image">aaaaa</div>
     <mat-card-title>Shiba Inu</mat-card-title>
     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
   </mat-card-header>
@@ -20,4 +31,4 @@
     <button matButton>LIKE</button>
     <button matButton>SHARE</button>
   </mat-card-actions>
-</mat-card>
+</mat-card> -->
