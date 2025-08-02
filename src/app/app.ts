@@ -1,6 +1,10 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, inject, OnDestroy, signal } from '@angular/core';
-import { MatButton, MatIconButton } from '@angular/material/button';
+import {
+  MatButton,
+  MatButtonModule,
+  MatIconButton,
+} from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,6 +19,7 @@ const materialImports = [
   MatIconButton,
   MatSidenavModule,
   MatListModule,
+  MatButtonModule,
 ];
 
 @Component({
@@ -27,6 +32,7 @@ export class App implements OnDestroy {
   protected title = 'angular-material';
   protected readonly isMobile = signal(true);
   pokemonTypeList = signal<PokemonType[]>([]);
+  sideNavOpened?: boolean;
 
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;

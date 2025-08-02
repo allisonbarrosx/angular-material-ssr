@@ -26,12 +26,66 @@
   left: 0;
   right: 0;
 }
-h1.app-name {
-  margin-left: 8px;
-}
 
 .sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.animated-button {
+  /* Initial state: hidden and positioned below the viewport */
+  opacity: 0;
+  transform: translateY(
+    100px
+  ); /* Adjust this value to control the starting position */
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out; /* Smooth transition for appearance */
+}
+
+/* Class to trigger the animation */
+.animated-button.show {
+  opacity: 1;
+  transform: translateY(0); /* Move to its original position */
+}
+
+.bounce-out-down {
+  animation: bounce-out-down 0.2s ease-out both;
+}
+.bounce-in-up {
+  animation: bounce-in-up 0.2s ease both;
+}
+
+@keyframes bounce-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-out-down {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
 }
