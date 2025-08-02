@@ -1,39 +1,25 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, inject, OnDestroy, signal } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
-import {
-  MatList,
-  MatListItem,
-  MatListItemLine,
-  MatListItemTitle,
-} from '@angular/material/list';
-import {
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-} from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
-import { RouterOutlet } from '@angular/router';
-import { PokemonService } from './services/pokemon.service';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { PokemonType } from './models/pokemon.model';
+import { PokemonService } from './services/pokemon.service';
 
 const materialImports = [
   MatToolbar,
   MatIcon,
   MatIconButton,
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-  MatList,
-  MatListItem,
-  MatListItemTitle,
-  MatListItemLine,
+  MatSidenavModule,
+  MatListModule,
 ];
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ...materialImports],
+  imports: [RouterOutlet, RouterLink, ...materialImports],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

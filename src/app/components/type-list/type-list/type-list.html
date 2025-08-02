@@ -1,0 +1,33 @@
+@if (progression != 100) {
+<div class="position-absolute top-0 start-0 bg-black spinner w-100 h-100 z-3">
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <mat-progress-spinner mode="indeterminate" [value]="progression">
+    </mat-progress-spinner>
+  </div>
+</div>
+}
+<table mat-table matSort [dataSource]="pokemonList" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+    <td mat-cell *matCellDef="let pokemon">{{pokemon.id}}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let pokemon">{{pokemon.name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="sprites">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Picture</th>
+    <td mat-cell *matCellDef="let pokemon">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+  aria-label="Select page of Pokémons"
+>
+</mat-paginator>

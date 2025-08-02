@@ -1,60 +1,49 @@
 <div class="main-content">
-  <!-- [style.marginTop.px]="isMobile() ? 56 : 0" -->
-  <mat-sidenav-container class="example-sidenav-container">
-    <!-- fixedTopGap="56" -->
+  <mat-sidenav-container class="sidenav-container">
     <mat-sidenav
       #snav
       [mode]="isMobile() ? 'over' : 'side'"
       [fixedInViewport]="isMobile()"
     >
-      <mat-list>
+      <mat-nav-list class="p-1">
+        <a mat-list-item matListItemTitle class="text-capitalize" routerLink="/"
+          >home</a
+        >
         @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
-        <mat-list-item>
-          <span matListItemTitle class="text-capitalize"
-            >{{ pokemonType.name }}</span
-          >
-        </mat-list-item>
+        <a
+          mat-list-item
+          matListItemTitle
+          class="text-capitalize"
+          [routerLink]="`type/${pokemonType.name}`"
+          >{{ pokemonType.name }}</a
+        >
         }
-      </mat-list>
-      <!-- <mat-list>
-        <mat-list-item>
-          <span matListItemTitle>Pepper</span>
-          <span matListItemLine>Produced by a plant</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span matListItemTitle>Salt</span>
-          <span matListItemLine>Extracted from sea water</span>
-        </mat-list-item>
-        <mat-list-item>
-          <span matListItemTitle>Paprika</span>
-          <span matListItemLine>Produced by dried and ground red peppers</span>
-        </mat-list-item>
-      </mat-list> -->
+      </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
       <mat-toolbar class="">
         <button
           matIconButton
-          class="example-icon"
-          aria-label="Example icon-button with menu icon"
+          class="icon"
+          aria-label="icon-button with menu icon"
           (click)="snav.toggle()"
         >
           <mat-icon>menu</mat-icon>
         </button>
-        <span>My App</span>
-        <span class="example-spacer"></span>
+        <h1 class="app-name">Pokémon: Gotta Catch 'Em All!</h1>
+        <span class="spacer"></span>
         <button
           matIconButton
-          class="example-icon favorite-icon"
-          aria-label="Example icon-button with heart icon"
+          class="icon favorite-icon"
+          aria-label="icon-button with heart icon"
         >
           <mat-icon>favorite</mat-icon>
         </button>
         <button
           matIconButton
-          class="example-icon"
-          aria-label="Example icon-button with share icon"
+          class="icon"
+          aria-label="icon-button with share icon"
         >
           <mat-icon>share</mat-icon>
         </button>

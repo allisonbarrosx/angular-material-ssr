@@ -1,34 +1,27 @@
 <div class="d-flex justify-content-center">
-  <div class="d-flex justify-content-start flex-wrap gap-3">
-    @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
-    <mat-card class="example-card" appearance="outlined">
-      <mat-card-content class="text-capitalize">
-        {{ pokemonType.name }}
-      </mat-card-content>
-    </mat-card>
-    }
-  </div>
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <h2>Pokémon Types</h2>
+      </ng-template>
+      <div
+        class="d-flex justify-content-start align-content-around flex-wrap gap-3 mt-4"
+      >
+        @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
+        <mat-card class="flex-grow-1 col-6 col-md-3" appearance="raised">
+          <mat-card-header
+            class="text-capitalize d-flex justify-content-center"
+          >
+            <mat-card-title>{{ pokemonType.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions class="d-flex justify-content-center">
+            <button matButton [routerLink]="`type/${pokemonType.name}`">
+              View list
+            </button>
+          </mat-card-actions>
+        </mat-card>
+        }
+      </div>
+    </mat-tab>
+  </mat-tab-group>
 </div>
-<!-- <mat-card class="example-card" appearance="outlined">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image">aaaaa</div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img
-    mat-card-image
-    src="https://material.angular.dev/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu"
-  />
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button matButton>LIKE</button>
-    <button matButton>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
