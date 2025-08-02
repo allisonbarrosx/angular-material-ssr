@@ -7,7 +7,12 @@
       [(opened)]="sideNavOpened"
     >
       <mat-nav-list class="p-1 mb-4">
-        <a mat-list-item matListItemTitle class="text-capitalize" routerLink="/"
+        <a
+          mat-list-item
+          matListItemTitle
+          class="text-capitalize"
+          routerLink="/"
+          (click)="isMobile() && snav.close()"
           >home</a
         >
         @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
@@ -16,6 +21,7 @@
           matListItemTitle
           class="text-capitalize"
           [routerLink]="`type/${pokemonType.name}`"
+          (click)="isMobile() && snav.close()"
           >{{ pokemonType.name }}</a
         >
         }
