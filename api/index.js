@@ -1,11 +1,8 @@
-import("../dist/angular-material/server/server.mjs")
-  .then((module) => module.app)
-  .catch((error) => {
-    console.error("Failed to load server module:", error);
-    throw error;
-  });
+const path = require("path");
 
-export default async (req, res) => {
-  const { app } = await import("../dist/angular-material/server/server.mjs");
-  return app(req, res);
-};
+const serverDistPath = path.join(
+  process.cwd(),
+  "dist/angular-material/server/server.mjs"
+);
+
+export default import(serverDistPath).then((module) => module.app);
