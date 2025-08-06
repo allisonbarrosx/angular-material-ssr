@@ -47,8 +47,7 @@
             "outputMode": "server",
             "ssr": {
               "entry": "src/server.ts"
-            },
-            "index": "src/indexFile.html"
+            }
           },
           "configurations": {
             "production": {

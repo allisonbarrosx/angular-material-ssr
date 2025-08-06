@@ -9,7 +9,7 @@ import { join } from 'node:path';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
-export const app = express();
+const app = express();
 const angularApp = new AngularNodeAppEngine();
 
 /**
@@ -51,7 +51,6 @@ app.use((req, res, next) => {
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
-// commented out to let Vercel run the server on functions :)
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
   app.listen(port, (error) => {
