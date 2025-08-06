@@ -15,7 +15,7 @@ import {
   PokemonCompleteInfo,
   PokemonCompleteInfoQuery,
   PokemonCompleteInfoService,
-} from '../../../state';
+} from '../../state';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
 import { Location } from '@angular/common';
@@ -61,7 +61,7 @@ export class TypeList implements AfterViewInit {
         this.progression = 100;
       });
 
-    this._query.selectLoading().subscribe((loading) => {
+    this._query.selectLoading().subscribe((loading: boolean) => {
       this.progression = loading ? 0 : 100;
     });
   }
