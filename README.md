@@ -1,76 +1,79 @@
-# Furter reading:
+# Pokémon Angular Material App
 
-- https://opensource.salesforce.com/akita/docs/store
-- https://opensource.salesforce.com/akita/docs/query/
-- https://opensource.salesforce.com/akita/docs/config/
-- https://opensource.salesforce.com/akita/docs/entities/entity-store/#entity-id
-- https://opensource.salesforce.com/akita/docs/entities/query-entity/
-- https://opensource.salesforce.com/akita/docs/transactions/
-- https://opensource.salesforce.com/akita/docs/best-practices/
-- https://opensource.salesforce.com/akita/docs/additional/cache
-- https://opensource.salesforce.com/akita/docs/additional/middleware/
-- https://opensource.salesforce.com/akita/docs/additional/operators (to set loading state to the store)
-- https://opensource.salesforce.com/akita/docs/plugins/dirty-check
-- https://opensource.salesforce.com/akita/docs/enhancers/cli
+Welcome to the Pokémon Angular Material App! This project showcases a modern web application built with Angular, leveraging the power of Angular Material for a sleek UI, and interacting with the Pokémon API to fetch and display Pokémon data.
 
-Check live: https://angular-material-dun.vercel.app/
+## Technologies Used
 
-# AngularMaterial
+- **Angular**: The core framework for building dynamic single-page applications.
+- **Angular Material**: A comprehensive UI component library implementing Google's Material Design.
+- **RxJS**: Reactive Extensions for JavaScript, used for declarative reactive programming.
+- **Angular Signals**: A new reactivity model in Angular for fine-grained change detection.
+- **Akita**: A state management pattern, built on RxJS, for managing application data.
+- **Pokémon API**: The RESTful API providing access to a vast database of Pokémon information.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+## Features
 
-## Development server
+- Browse Pokémon types.
+- Responsive design with Angular Material components.
 
-To start a local development server, run:
+## Getting Started
 
-```bash
-ng serve
-```
+To get a copy of this project up and running on your local machine, follow these simple steps.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### Prerequisites
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Make sure you have Node.js and npm (Node Package Manager) installed on your system. Angular CLI also needs to be installed globally.
 
 ```bash
-ng generate component component-name
+npm install -g @angular/cli
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/allisonbarrosx/angular-material.git
+    ```
+
+2.  **Navigate to the project directory:**
+
+    ```bash
+    cd angular-material
+    ```
+
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+### Running the Application
+
+To start the development server and view the application locally:
 
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+Open your browser and navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-To build the project run:
+## Live Demo
 
-```bash
-ng build
-```
+You can access a live version of this application, deployed on Vercel, at the following URL:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+[https://angular-material-dun.vercel.app/](https://angular-material-dun.vercel.app/)
 
-## Running unit tests
+## Screenshots
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+(Screenshots will be added here)
 
-```bash
-ng test
-```
+## License
 
-## Running end-to-end tests
+This project is licensed under the MIT License.
 
-For end-to-end (e2e) testing, run:
+## Contact
 
-```bash
-ng e2e
-```
+For any questions or feedback, please open an issue on GitHub.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+![PokeAPI Logo](./pokeapi.png)
+![Cool Pokemon Image](./pokemon.jpg)
