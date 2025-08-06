@@ -9,7 +9,7 @@
     "build:production": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:angular-material": "node dist/angular-material/server/server.mjs"
+    "serve:ssr": "node dist/angular-material/server/server.mjs"
   },
   "private": true,
   "dependencies": {

@@ -4,7 +4,7 @@ import { concatMap, map, switchMap, tap, toArray } from 'rxjs/operators';
 import { PokemonCompleteInfoStore } from './pokemon-complete-info.store';
 import { TypeListPokemons } from '../../models/pokemon.model';
 import { PokemonCompleteInfo } from './pokemon-complete-info.model';
-import { from } from 'rxjs';
+import { forkJoin, from } from 'rxjs';
 import { PokemonCompleteInfoQuery } from './pokemon-complete-info.query';
 
 @Injectable({ providedIn: 'root' })
@@ -36,24 +36,23 @@ export class PokemonCompleteInfoService {
     return this._query.isEmptyByType$(type).pipe(
       tap(() => this.pokemonCompleteInfoStore.setLoading(true)),
       switchMap((isEmpty) => {
-        if (isEmpty) {
-          return this._httpClient.get<TypeListPokemons>(`type/${type}`).pipe(
-            map((pokemonRes) => pokemonRes.pokemon),
-            switchMap((pokemons) =>
-              from(pokemons).pipe(
-                concatMap((p) =>
-                  this._httpClient
-                    .get<PokemonCompleteInfo>(`pokemon/${p.pokemon.name}`)
-                    .pipe(map((res) => ({ ...res, type })))
-                ),
-                toArray()
+        if (!isEmpty) return this._query.getListByType$(type);
+        //  Get basic Pokémon list for the type
+        return this._httpClient.get<TypeListPokemons>(`type/${type}`).pipe(
+          map((res) => res.pokemon.map((p) => p.pokemon.name)),
+          // Fetch all complete Pokémon info in parallel
+          switchMap((names) =>
+            forkJoin(
+              names.map((name) =>
+                this._httpClient
+                  .get<PokemonCompleteInfo>(`pokemon/${name}`)
+                  .pipe(map((res) => ({ ...res, type })))
               )
-            ),
-            tap((results) => this.pokemonCompleteInfoStore.add(results))
-          );
-        } else {
-          return this._query.getListByType$(type);
-        }
+            )
+          ),
+          // Save in store
+          tap((results) => this.pokemonCompleteInfoStore.add(results))
+        );
       }),
       tap(() => this.pokemonCompleteInfoStore.setLoading(false))
     );

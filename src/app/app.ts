@@ -1,5 +1,11 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Component, inject, OnDestroy, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnDestroy,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import {
   MatButton,
   MatButtonModule,
@@ -12,6 +18,7 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { PokemonType } from './models/pokemon.model';
 import { PokemonTypesQuery, PokemonTypesService } from './state';
+import { isPlatformBrowser } from '@angular/common';
 
 const materialImports = [
   MatToolbar,
@@ -38,6 +45,7 @@ export class App implements OnDestroy {
   private _query = inject(PokemonTypesQuery);
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
+  private readonly _platformId = inject(PLATFORM_ID);
 
   constructor() {
     const media = inject(MediaMatcher);
@@ -46,7 +54,11 @@ export class App implements OnDestroy {
     this.isMobile.set(this._mobileQuery.matches);
     this._mobileQueryListener = () =>
       this.isMobile.set(this._mobileQuery.matches);
-    this._mobileQuery.addEventListener('change', this._mobileQueryListener);
+
+    // Only add event listener in browser environment
+    if (isPlatformBrowser(this._platformId)) {
+      this._mobileQuery.addEventListener('change', this._mobileQueryListener);
+    }
 
     this._query.isEmpty$.subscribe((isEmpty) => {
       if (isEmpty) {
@@ -58,6 +70,12 @@ export class App implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this._mobileQuery.removeEventListener('change', this._mobileQueryListener);
+    // Only remove event listener in browser environment
+    if (isPlatformBrowser(this._platformId)) {
+      this._mobileQuery.removeEventListener(
+        'change',
+        this._mobileQueryListener
+      );
+    }
   }
 }
