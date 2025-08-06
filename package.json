@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "serve:production": "ng serve --configuration production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -18,6 +19,7 @@
     "@angular/material": "^20.1.4",
     "@angular/platform-browser": "^20.0.0",
     "@angular/router": "^20.0.0",
+    "@datorama/akita": "^7.1.1",
     "bootstrap": "^5.3.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
@@ -35,5 +37,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.2"
+  },
+  "akitaCli": {
+    "basePath": "./src/app/",
+    "template": "angular"
   }
 }

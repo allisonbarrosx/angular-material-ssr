@@ -11,7 +11,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { PokemonType } from './models/pokemon.model';
-import { PokemonService } from './services/pokemon.service';
+import { PokemonTypesQuery, PokemonTypesService } from './state';
 
 const materialImports = [
   MatToolbar,
@@ -31,13 +31,15 @@ const materialImports = [
 export class App implements OnDestroy {
   protected title = 'angular-material';
   protected readonly isMobile = signal(true);
-  pokemonTypeList = signal<PokemonType[]>([]);
+  pokemonTypeList = signal<PokemonType[] | undefined>([]);
   sideNavOpened?: boolean;
 
+  private _service = inject(PokemonTypesService);
+  private _query = inject(PokemonTypesQuery);
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;
 
-  constructor(private readonly _service: PokemonService) {
+  constructor() {
     const media = inject(MediaMatcher);
 
     this._mobileQuery = media.matchMedia('(max-width: 765px)');
@@ -46,9 +48,13 @@ export class App implements OnDestroy {
       this.isMobile.set(this._mobileQuery.matches);
     this._mobileQuery.addEventListener('change', this._mobileQueryListener);
 
-    this._service
-      .getPokemonTypes()
-      .subscribe((res) => this.pokemonTypeList.set(res));
+    this._query.isEmpty$.subscribe((isEmpty) => {
+      if (isEmpty) {
+        this._service.getPokemonTypesList().subscribe();
+      } else {
+        this.pokemonTypeList.set(this._query.pokemonTypes());
+      }
+    });
   }
 
   ngOnDestroy(): void {

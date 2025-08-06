@@ -13,8 +13,9 @@
           class="text-capitalize"
           routerLink="/"
           (click)="isMobile() && snav.close()"
-          >home</a
         >
+          <mat-icon fontIcon="home" matListItemIcon></mat-icon>Home
+        </a>
         @for (pokemonType of pokemonTypeList(); track pokemonType.name) {
         <a
           mat-list-item
@@ -46,9 +47,10 @@
         <button
           matIconButton
           class="icon favorite-icon"
-          aria-label="icon-button with heart icon"
+          aria-label="icon-button with home icon"
+          routerLink="/"
         >
-          <mat-icon>favorite</mat-icon>
+          <mat-icon>home</mat-icon>
         </button>
         <button
           matIconButton

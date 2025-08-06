@@ -12,6 +12,7 @@ import {
   withInterceptorsFromDi,
 } from '@angular/common/http';
 import { BaseUrlInterceptor } from '../interceptors/base-url-interceptor';
+import { NotFoundInterceptor } from '../interceptors/not-found-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,6 +23,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: NotFoundInterceptor,
       multi: true,
     },
   ],

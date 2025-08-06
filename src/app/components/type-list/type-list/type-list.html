@@ -6,6 +6,9 @@
   </div>
 </div>
 }
+<button matButton="tonal" (click)="goBack()">
+  <mat-icon>chevron_left</mat-icon>back
+</button>
 <table mat-table matSort [dataSource]="pokemonList" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>

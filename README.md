@@ -1,3 +1,18 @@
+# Furter reading:
+
+- https://opensource.salesforce.com/akita/docs/store
+- https://opensource.salesforce.com/akita/docs/query/
+- https://opensource.salesforce.com/akita/docs/config/
+- https://opensource.salesforce.com/akita/docs/entities/entity-store/#entity-id
+- https://opensource.salesforce.com/akita/docs/entities/query-entity/
+- https://opensource.salesforce.com/akita/docs/transactions/
+- https://opensource.salesforce.com/akita/docs/best-practices/
+- https://opensource.salesforce.com/akita/docs/additional/cache
+- https://opensource.salesforce.com/akita/docs/additional/middleware/
+- https://opensource.salesforce.com/akita/docs/additional/operators (to set loading state to the store)
+- https://opensource.salesforce.com/akita/docs/plugins/dirty-check
+- https://opensource.salesforce.com/akita/docs/enhancers/cli
+
 Check live: https://angular-material-dun.vercel.app/
 
 # AngularMaterial

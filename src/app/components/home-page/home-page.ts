@@ -1,10 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { PokemonService } from '../../services/pokemon.service';
 import { PokemonType } from '../../models/pokemon.model';
 import { RouterLink } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
+import { PokemonTypesQuery, PokemonTypesService } from '../../state';
 
 const matImports = [MatCardModule, MatButton, MatTabsModule];
 
@@ -15,11 +15,18 @@ const matImports = [MatCardModule, MatButton, MatTabsModule];
   styleUrl: './home-page.scss',
 })
 export class HomePage {
-  pokemonTypeList = signal<PokemonType[]>([]);
+  private _service = inject(PokemonTypesService);
+  private _query = inject(PokemonTypesQuery);
 
-  constructor(private readonly _service: PokemonService) {
-    this._service
-      .getPokemonTypes()
-      .subscribe((res) => this.pokemonTypeList.set(res));
+  pokemonTypeList = signal<PokemonType[] | undefined>([]);
+
+  constructor() {
+    this._query.isEmpty$.subscribe((isEmpty) => {
+      if (isEmpty) {
+        this._service.getPokemonTypesList().subscribe();
+      } else {
+        this.pokemonTypeList.set(this._query.pokemonTypes());
+      }
+    });
   }
 }
