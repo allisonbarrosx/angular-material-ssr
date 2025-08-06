@@ -13,12 +13,19 @@ import {
 } from '@angular/common/http';
 import { BaseUrlInterceptor } from '../interceptors/base-url-interceptor';
 import { NotFoundInterceptor } from '../interceptors/not-found-interceptor';
+import {
+  provideClientHydration,
+  withEventReplay,
+} from '@angular/platform-browser';
+import { provideServerRendering, withRoutes } from '@angular/ssr';
+import { serverRoutes } from './app.routes.server';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
+    provideServerRendering(withRoutes(serverRoutes)),
     provideHttpClient(withInterceptorsFromDi()),
     {
       provide: HTTP_INTERCEPTORS,
@@ -30,5 +37,6 @@ export const appConfig: ApplicationConfig = {
       useClass: NotFoundInterceptor,
       multi: true,
     },
+    provideClientHydration(withEventReplay()),
   ],
 };
