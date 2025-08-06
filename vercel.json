@@ -3,7 +3,10 @@
   "public": true,
   "name": "pokelist-ssr",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/api" }
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
   ],
   "functions": {
     "api/index.js": {
